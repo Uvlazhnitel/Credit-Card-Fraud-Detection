@@ -1,42 +1,37 @@
-from sklearn.metrics import precision_score, recall_score, f1_score
 import numpy as np
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 def choose_threshold(oof_proba, y_train, precision, recall, thresholds, target_recall=0.85):
+    # precision, recall: length = len(thresholds)+1  (как в precision_recall_curve)
 
-    # Find indices where recall >= target (exclude i=0 since it has no corresponding threshold)
-    mask = (recall >= target_recall)
-    cand_idx = np.where(mask)[0][1:]  # Exclude i=0
+    # Valid indices for thresholds are 1..len(precision)-1
+    valid_idx = np.arange(1, len(precision))
+
+    # кандидаты: recall >= target среди валидных индексов
+    cand_idx = valid_idx[recall[valid_idx] >= target_recall]
 
     if cand_idx.size > 0:
-        # Pick the candidate with max recall among those meeting precision target
+        # choose max precision among candidates
         chosen_idx = cand_idx[np.argmax(precision[cand_idx])]
-        chosen_thr = thresholds[chosen_idx - 1]  # Map i -> thresholds[i-1]
         strategy = f"recall≥{target_recall:.2f} → max precision"
     else:
-        # Fallback: choose threshold that maximizes F1 (ignore i=0)
         f1_curve = 2 * (precision * recall) / (precision + recall + 1e-12)
-        valid = np.arange(1, len(precision))  # Ignore i=0
-        chosen_idx = valid[np.argmax(f1_curve[valid])]
-        chosen_thr = thresholds[chosen_idx - 1]
+        chosen_idx = valid_idx[np.argmax(f1_curve[valid_idx])]
         strategy = f"max F1 (target recall {target_recall:.2f} unattainable on OOF)"
 
-    # Recompute metrics on the chosen threshold
+    chosen_thr = thresholds[chosen_idx - 1]
+
     y_hat = (oof_proba >= chosen_thr).astype(int)
     metrics = {
-        "precision": round(precision_score(y_train, y_hat), 6),
-        "recall": round(recall_score(y_train, y_hat), 6),
-        "f1": round(f1_score(y_train, y_hat), 6)
+        "precision": float(precision_score(y_train, y_hat)),
+        "recall": float(recall_score(y_train, y_hat)),
+        "f1": float(f1_score(y_train, y_hat)),
     }
 
-    # Print strategy and chosen threshold
     print("Strategy:", strategy)
-    print("Chosen index:", chosen_idx)
-    print("Chosen threshold:", round(chosen_thr, 3))
-    print("Point on PR: precision=", round(precision[chosen_idx], 3),
-          "recall=", round(recall[chosen_idx], 3))
-    print("Recomputed on OOF: ",
-          "precision=", metrics["precision"],
-          "recall=", metrics["recall"],
-          "f1=", metrics["f1"])
+    print("Chosen threshold:", round(float(chosen_thr), 3))
+    print("PR point: precision=", round(float(precision[chosen_idx]), 3),
+          "recall=", round(float(recall[chosen_idx]), 3))
+    print("Recomputed on OOF:", metrics)
 
     return chosen_thr, strategy, metrics
