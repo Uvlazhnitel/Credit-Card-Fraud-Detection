@@ -2,12 +2,12 @@ import numpy as np
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 def choose_threshold(oof_proba, y_train, precision, recall, thresholds, target_recall=0.85):
-    # precision, recall: length = len(thresholds)+1  (как в precision_recall_curve)
+    # precision, recall: length = len(thresholds)+1  (as in precision_recall_curve)
 
     # Valid indices for thresholds are 1..len(precision)-1
     valid_idx = np.arange(1, len(precision))
 
-    # кандидаты: recall >= target среди валидных индексов
+    # candidates: recall >= target among valid indices
     cand_idx = valid_idx[recall[valid_idx] >= target_recall]
 
     if cand_idx.size > 0:
