@@ -1,2 +1,1 @@
-target >= 90 precision 
-
+Maximize Recall at FP ≤ 0.1%
