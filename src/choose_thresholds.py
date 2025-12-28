@@ -1,37 +1,28 @@
 import numpy as np
-from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import roc_curve, precision_score, recall_score, f1_score
 
-def choose_threshold(oof_proba, y_train, precision, recall, thresholds, target_recall=0.85):
-    # precision, recall: length = len(thresholds)+1  (as in precision_recall_curve)
+def choose_threshold(y_true, proba, max_fpr=0.001):
+    fpr, tpr, thr = roc_curve(y_true, proba)  # tpr == recall
 
-    # Valid indices for thresholds are 1..len(precision)-1
-    valid_idx = np.arange(1, len(precision))
-
-    # candidates: recall >= target among valid indices
-    cand_idx = valid_idx[recall[valid_idx] >= target_recall]
-
-    if cand_idx.size > 0:
-        # choose max precision among candidates
-        chosen_idx = cand_idx[np.argmax(precision[cand_idx])]
-        strategy = f"recall≥{target_recall:.2f} → max precision"
+    ok = np.where(fpr <= max_fpr)[0]
+    if ok.size == 0:
+        # Can't achieve the requested FPR; pick the smallest FPR point (usually first thresholds)
+        i = np.argmin(fpr)
+        strategy = f"Could not reach FPR≤{max_fpr:.4f}; picked min FPR point"
     else:
-        f1_curve = 2 * (precision * recall) / (precision + recall + 1e-12)
-        chosen_idx = valid_idx[np.argmax(f1_curve[valid_idx])]
-        strategy = f"max F1 (target recall {target_recall:.2f} unattainable on OOF)"
+        # Maximize recall among allowed points
+        i = ok[np.argmax(tpr[ok])]
+        strategy = f"Max recall with FPR≤{max_fpr:.4f}"
 
-    chosen_thr = thresholds[chosen_idx - 1]
+    chosen_thr = thr[i]
+    y_hat = (proba >= chosen_thr).astype(int)
 
-    y_hat = (oof_proba >= chosen_thr).astype(int)
     metrics = {
-        "precision": float(precision_score(y_train, y_hat)),
-        "recall": float(recall_score(y_train, y_hat)),
-        "f1": float(f1_score(y_train, y_hat)),
+        "threshold": float(chosen_thr),
+        "fpr": float(fpr[i]),
+        "recall": float(recall_score(y_true, y_hat)),
+        "precision": float(precision_score(y_true, y_hat, zero_division=0)),
+        "f1": float(f1_score(y_true, y_hat, zero_division=0)),
     }
-
-    print("Strategy:", strategy)
-    print("Chosen threshold:", round(float(chosen_thr), 3))
-    print("PR point: precision=", round(float(precision[chosen_idx]), 3),
-          "recall=", round(float(recall[chosen_idx]), 3))
-    print("Recomputed on OOF:", metrics)
 
     return chosen_thr, strategy, metrics
