@@ -23,3 +23,14 @@ Chosent thr cm:
 Confusion Matrix:
 [[227227    224]
  [    66    328]]
+
+
+
+
+Chosen threshold: 0.051411170528817586 using strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold:
+threshold: 0.0514
+fpr: 0.0010
+recall: 0.8299
+precision: 0.5935
+f1: 0.6921
