@@ -12,7 +12,7 @@ CM:
 --------------------------------------------
 LogReg with chosen threshold
 
-chosen thr 
+chosen threshold 
 Chosen threshold: 0.9898731402482259 using strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold:
 threshold: 0.9899
@@ -21,7 +21,7 @@ recall: 0.8325
 precision: 0.5942
 f1: 0.6934
 
-Chosent thr cm:
+Chosen threshold cm:
 Confusion Matrix:
 [[227227    224]
  [    66    328]]
