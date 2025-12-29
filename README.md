@@ -10,7 +10,9 @@ CM:
 
 
 --------------------------------------------
-chosen thr 
+LogReg with chosen threshold
+
+chosen threshold 
 Chosen threshold: 0.9898731402482259 using strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold:
 threshold: 0.9899
@@ -19,13 +21,12 @@ recall: 0.8325
 precision: 0.5942
 f1: 0.6934
 
-Chosent thr cm:
+Chosen threshold cm:
 Confusion Matrix:
 [[227227    224]
  [    66    328]]
 
-
-
+HGB with chosen threshold
 
 Chosen threshold: 0.051411170528817586 using strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold:
@@ -34,3 +35,16 @@ fpr: 0.0010
 recall: 0.8299
 precision: 0.5935
 f1: 0.6921
+
+HGB tuning + sample weight=200 best parameters and score 
+
+Best Parameters: {'classifier__learning_rate': 0.19262268462637636, 'classifier__max_iter': 312, 'classifier__max_leaf_nodes': 30, 'classifier__min_samples_leaf': 17}
+Best Score (Recall at FPR 0.1%): 0.7131450827653358
+
+Chosen threshold after hyperparameter tuning: 0.6891431307667594, strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold after hyperparameter tuning:
+threshold: 0.6891
+fpr: 0.0009
+recall: 0.8299
+precision: 0.6181
+f1: 0.7086
