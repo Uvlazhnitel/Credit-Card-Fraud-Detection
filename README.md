@@ -41,3 +41,10 @@ HGB tuning + sample weight=200 best parameters and score
 Best Parameters: {'classifier__learning_rate': np.float64(0.19262268462637636), 'classifier__max_iter': 312, 'classifier__max_leaf_nodes': 30, 'classifier__min_samples_leaf': 17}
 Best Score (Recall at FPR 0.1%): 0.7131450827653358
 
+Chosen threshold after hyperparameter tuning: 0.6891431307667594, strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold after hyperparameter tuning:
+threshold: 0.6891
+fpr: 0.0009
+recall: 0.8299
+precision: 0.6181
+f1: 0.7086
