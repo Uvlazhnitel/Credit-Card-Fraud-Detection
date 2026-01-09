@@ -36,15 +36,28 @@ recall: 0.8299
 precision: 0.5935
 f1: 0.6921
 
+----------------------------------------
 HGB tuning + sample weight=200 best parameters and score 
 
 Best Parameters: {'classifier__learning_rate': 0.19262268462637636, 'classifier__max_iter': 312, 'classifier__max_leaf_nodes': 30, 'classifier__min_samples_leaf': 17}
 Best Score (Recall at FPR 0.1%): 0.7131450827653358
 
-Chosen threshold after hyperparameter tuning: 0.6891431307667594, strategy: Max recall with FPR≤0.0010
+Chosen threshold after hyperparameter tuning: 0.5904002134695905, strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold after hyperparameter tuning:
-threshold: 0.6891
-fpr: 0.0009
-recall: 0.8299
-precision: 0.6181
-f1: 0.7086
+threshold: 0.5904
+fpr: 0.001
+recall: 0.8376
+precision: 0.6022
+f1: 0.7006
+
+------------------------------
+HGB + tuning + calibration 
+
+Chosen threshold: 0.009539460307406655, strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold:
+threshold: 0.0095
+fpr: 0.0008
+recall: 0.8401
+precision: 0.6465
+f1: 0.7307
+
