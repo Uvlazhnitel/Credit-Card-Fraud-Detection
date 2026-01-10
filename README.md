@@ -53,11 +53,13 @@ f1: 0.7006
 ------------------------------
 HGB + tuning + calibration 
 
-Chosen threshold: 0.009539460307406655, strategy: Max recall with FPR≤0.0010
-Metrics at chosen threshold:
-threshold: 0.0095
-fpr: 0.0008
-recall: 0.8401
-precision: 0.6465
-f1: 0.7307
+Chosen threshold after hyperparameter tuning: 0.009550051827792954, strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold after hyperparameter tuning:
+threshold: 0.0096
+fpr: 0.001
+recall: 0.8223
+precision: 0.5912
+f1: 0.6879
+
+
 
