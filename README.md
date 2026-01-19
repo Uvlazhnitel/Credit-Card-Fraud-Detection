@@ -26,30 +26,46 @@ Confusion Matrix:
 [[227227    224]
  [    66    328]]
 
-HGB with chosen threshold
+---------------------------
+HGB baseline 
 
-Chosen threshold: 0.051411170528817586 using strategy: Max recall with FPR≤0.0010
+Chosen threshold: 0.603880655997441, strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold:
-threshold: 0.0514
-fpr: 0.0010
-recall: 0.8299
-precision: 0.5935
-f1: 0.6921
+threshold: 0.6039
+fpr: 0.0009
+recall: 0.7005
+precision: 0.586
+f1: 0.6382
+
+Confusion Matrix:
+ [[227256    195]
+ [   118    276]]
+
+
+------------------------------------
+HGB + randomsearch 
+
+Chosen threshold after hyperparameter tuning: 0.011140445817131722, strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold after hyperparameter tuning:
+threshold: 0.0111
+fpr: 0.0009
+recall: 0.8223
+precision: 0.6231
+f1: 0.709
+Confusion Matrix after hyperparameter tuning:
+ [[227255    196]
+ [    70    324]]
 
 ------------------------------
 HGB + tuning + calibration 
 
-Chosen threshold after hyperparameter tuning: 0.009550051827792954, strategy: Max recall with FPR≤0.0010
+Chosen threshold after hyperparameter tuning: 0.4502900283651993, strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold after hyperparameter tuning:
-threshold: 0.0096
-fpr: 0.001
-recall: 0.8223
-precision: 0.5912
-f1: 0.6879
-
-
-Best Parameters: {'classifier__learning_rate': 0.18850479889719593, 'classifier__max_iter': 545, 'classifier__max_leaf_nodes': 28, 'classifier__min_samples_leaf': 20}
-
-
+threshold: 0.4503
+fpr: 0.0009
+recall: 0.8452
+precision: 0.6077
+f1: 0.707
+Best Parameters: {'classifier__learning_rate': np.float64(0.18850479889719593), 'classifier__max_iter': 545, 'classifier__max_leaf_nodes': 28, 'classifier__min_samples_leaf': 20}
 
 
