@@ -48,7 +48,7 @@ precision: 0.5912
 f1: 0.6879
 
 
-Best Parameters: {'classifier__learning_rate': np.float64(0.18850479889719593), 'classifier__max_iter': 545, 'classifier__max_leaf_nodes': 28, 'classifier__min_samples_leaf': 20}
+Best Parameters: {'classifier__learning_rate': 0.18850479889719593, 'classifier__max_iter': 545, 'classifier__max_leaf_nodes': 28, 'classifier__min_samples_leaf': 20}
 
 
 
