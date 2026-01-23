@@ -56,16 +56,24 @@ Confusion Matrix after hyperparameter tuning:
  [[227255    196]
  [    70    324]]
 
+Best parameters:
+{
+  "classifier__learning_rate": 0.18850479889719593,
+  "classifier__max_iter": 545,
+  "classifier__max_leaf_nodes": 28,
+  "classifier__min_samples_leaf": 20
+}
+
+
 ------------------------------
 HGB + tuning + calibration 
 
-Chosen threshold after hyperparameter tuning: 0.4502900283651993, strategy: Max recall with FPR≤0.0010
-Metrics at chosen threshold after hyperparameter tuning:
-threshold: 0.4503
+threshold: 0.0406
 fpr: 0.0009
-recall: 0.8452
-precision: 0.6077
-f1: 0.707
-Best Parameters: {'classifier__learning_rate': np.float64(0.18850479889719593), 'classifier__max_iter': 545, 'classifier__max_leaf_nodes': 28, 'classifier__min_samples_leaf': 20}
+recall: 0.8376
+precision: 0.6111
+f1: 0.7066
+[[227241    210]
+ [    64    330]]
 
 
