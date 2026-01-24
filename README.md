@@ -26,40 +26,54 @@ Confusion Matrix:
 [[227227    224]
  [    66    328]]
 
-HGB with chosen threshold
+---------------------------
+HGB baseline 
 
-Chosen threshold: 0.051411170528817586 using strategy: Max recall with FPR≤0.0010
+Chosen threshold: 0.603880655997441, strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold:
-threshold: 0.0514
-fpr: 0.0010
-recall: 0.8299
-precision: 0.5935
-f1: 0.6921
+threshold: 0.6039
+fpr: 0.0009
+recall: 0.7005
+precision: 0.586
+f1: 0.6382
 
-----------------------------------------
-HGB tuning + sample weight=200 best parameters and score 
+Confusion Matrix:
+ [[227256    195]
+ [   118    276]]
 
-Best Parameters: {'classifier__learning_rate': 0.19262268462637636, 'classifier__max_iter': 312, 'classifier__max_leaf_nodes': 30, 'classifier__min_samples_leaf': 17}
-Best Score (Recall at FPR 0.1%): 0.7131450827653358
 
-Chosen threshold after hyperparameter tuning: 0.5904002134695905, strategy: Max recall with FPR≤0.0010
+------------------------------------
+HGB + randomsearch 
+
+Chosen threshold after hyperparameter tuning: 0.011140445817131722, strategy: Max recall with FPR≤0.0010
 Metrics at chosen threshold after hyperparameter tuning:
-threshold: 0.5904
-fpr: 0.001
-recall: 0.8376
-precision: 0.6022
-f1: 0.7006
+threshold: 0.0111
+fpr: 0.0009
+recall: 0.8223
+precision: 0.6231
+f1: 0.709
+Confusion Matrix after hyperparameter tuning:
+ [[227255    196]
+ [    70    324]]
+
+Best parameters:
+{
+  "classifier__learning_rate": 0.18850479889719593,
+  "classifier__max_iter": 545,
+  "classifier__max_leaf_nodes": 28,
+  "classifier__min_samples_leaf": 20
+}
+
 
 ------------------------------
 HGB + tuning + calibration 
 
-Chosen threshold after hyperparameter tuning: 0.009550051827792954, strategy: Max recall with FPR≤0.0010
-Metrics at chosen threshold after hyperparameter tuning:
-threshold: 0.0096
-fpr: 0.001
-recall: 0.8223
-precision: 0.5912
-f1: 0.6879
-
+threshold: 0.0406
+fpr: 0.0009
+recall: 0.8376
+precision: 0.6111
+f1: 0.7066
+[[227241    210]
+ [    64    330]]
 
 
