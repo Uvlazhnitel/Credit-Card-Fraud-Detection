@@ -49,3 +49,20 @@ To reproduce results similar to those reported here:
 5. Compute and report **precision**, **recall**, **F1-score**, and the **confusion matrix** as shown above.  
 
 Refer to the project's scripts and documentation for implementation details specific to this repository.
+
+--------------------------------------------
+LogReg with chosen threshold
+
+chosen threshold 
+Chosen threshold: 0.9898731402482259 using strategy: Max recall with FPR≤0.0010
+Metrics at chosen threshold:
+threshold: 0.9899
+fpr: 0.0010
+recall: 0.8325
+precision: 0.5942
+f1: 0.6934
+
+Chosen threshold cm:
+Confusion Matrix:
+ [[227240    211]
+ [    71    323]]
