@@ -1,0 +1,9 @@
+{
+    "classifier__l2_regularization": 0.9611720243493491,
+    "classifier__learning_rate": 0.17046143124884877,
+    "classifier__max_bins": 181,
+    "classifier__max_depth": 7,
+    "classifier__max_iter": 379,
+    "classifier__max_leaf_nodes": 40,
+    "classifier__min_samples_leaf": 29
+}
